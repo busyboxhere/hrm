@@ -2,7 +2,7 @@
 
 import { Logger } from '@nestjs/common';
 import { AfterSync, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { EmploymentHistory } from 'src/modules/employee/entity/employment-history.entity';
+import { EmploymentHistory } from 'src/entities/employment-history.entity';
 
 @Table({
 	tableName: 'CompanyRolesEntity',

@@ -1,5 +1,5 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { Employee } from '../employee.entity';
+import { Employee } from './employee.entity';
 
 @Table({
 	tableName: 'employeeAuth',

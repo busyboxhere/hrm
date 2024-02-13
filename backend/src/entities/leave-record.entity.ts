@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { LeaveCategory } from 'src/modules/shared/entities/leave-category.entity';
-import { Employee } from 'src/modules/employee/entity/employee.entity';
+import { LeaveCategory } from 'src/entities/leave-category.entity';
+import { Employee } from './employee.entity';
 
 @Table({
 	tableName: 'LeaveRecordEntity',

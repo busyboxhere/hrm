@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { Employee } from './employee.entity';
-import { CompanyRolesEntity } from 'src/modules/shared/entities/company-roles.entity';
+import { CompanyRolesEntity } from 'src/entities/company-roles.entity';
 
 @Table({
 	tableName: 'EmploymentHistory',

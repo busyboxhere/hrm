@@ -1,39 +1,26 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SequelizeModule, SequelizeModuleOptions } from '@nestjs/sequelize';
+import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AttendanceModule } from './modules/attendance/attendance.module';
-import { EmployeeModule } from './modules/employee/employee.module';
-import { LeaveManagementModule } from './modules/leave-management/leave-management.module';
+import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from './modules/shared/shared.module';
-
-export const sequelizeConfigFactory = async (configService: ConfigService): Promise<SequelizeModuleOptions> => {
-	return {
-		dialect: 'mysql',
-		host: configService.get<string>('DB_HOST'),
-		port: configService.get<number>('DB_PORT'),
-		username: configService.get<string>('DB_USERNAME'),
-		password: configService.get<string>('DB_PASSWORD'),
-		database: configService.get<string>('DB_NAME'),
-		autoLoadModels: true,
-		sync: { force: true },
-		retryAttempts: 0,
-	};
-};
+import { UserModule } from './modules/user/user.module';
+import { sequelizeConfigFactory } from './sequelize-config.factory';
+import { EntitiesModule } from './entities/entities.module';
 
 @Module({
 	imports: [
-		EmployeeModule,
-		LeaveManagementModule,
-		AttendanceModule,
+		UserModule,
+		AdminModule,
 		ConfigModule.forRoot({}),
+		EntitiesModule,
+		SharedModule,
 		SequelizeModule.forRootAsync({
 			imports: [ConfigModule],
 			inject: [ConfigService],
 			useFactory: sequelizeConfigFactory,
 		}),
-		SharedModule,
 	],
 	controllers: [AppController],
 	providers: [AppService, ConfigService],

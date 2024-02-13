@@ -2,9 +2,9 @@
 import { Logger } from '@nestjs/common';
 import { AfterSync, Column, DataType, HasMany, HasOne, Model, Table } from 'sequelize-typescript';
 import { EmploymentHistory } from './employment-history.entity';
-import { EmployeeAuth } from './employee-auth/employee-auth';
-import { Attendance } from 'src/modules/attendance/entity/attendance.entity';
-import { LeaveRecord } from 'src/modules/leave-management/entities/leave-record.entity';
+import { EmployeeAuth } from './employee-auth';
+import { Attendance } from './attendance.entity';
+import { LeaveRecord } from './leave-record.entity';
 
 @Table({
 	timestamps: true,
