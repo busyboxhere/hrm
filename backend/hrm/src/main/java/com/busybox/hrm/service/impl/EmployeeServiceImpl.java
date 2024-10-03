@@ -39,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteEmployee(String employeeId) {
 		employeeDAO.deleteEmployee(employeeId);
 	}

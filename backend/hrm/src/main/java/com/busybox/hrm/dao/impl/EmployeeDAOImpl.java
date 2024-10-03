@@ -33,8 +33,14 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void deleteEmployee(String employeeId) {
-		// TODO Auto-generated method stub
+		TypedQuery<Employee> query = entityManager.createQuery("Select e from Employee e where e.employeeId=:data",
+				Employee.class);
 
+		query.setParameter("data", employeeId);
+
+		Employee employee = query.getSingleResult();
+
+		entityManager.remove(employee);
 	}
 
 	@Override
