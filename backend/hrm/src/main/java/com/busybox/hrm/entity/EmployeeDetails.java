@@ -8,6 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * 
@@ -22,33 +28,50 @@ public class EmployeeDetails extends BaseEntity {
 	int id;
 
 	@Column(name = "first_name")
+	@NotBlank(message = "First name is mandatory")
+	@Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
 	private String firstName;
 
+	@NotBlank(message = "Last name is mandatory")
+	@Size(min = 2, max = 50, message = "Last name must be between 2 and 50 characters")
 	@Column(name = "last_name")
 	private String lastName;
 
+	@NotBlank(message = "Email address is mandatory")
+	@Email(message = "Email should be valid")
 	@Column(name = "email_address")
 	private String emailAddress;
 
+	@NotBlank(message = "Gender is mandatory")
+	@Pattern(regexp = "Male|Female|Other", message = "Gender must be Male, Female, or Other")
 	@Column(name = "gender")
 	private String gender;
 
+	@NotNull(message = "Marital status is mandatory")
 	@Column(name = "isMarried")
-	private byte isMarried;
+	private boolean isMarried;
 
+	@NotBlank(message = "Primary phone number is mandatory")
+	@Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "Primary phone number is invalid")
 	@Column(name = "phone_number_1")
 	private String phoneNumber1;
 
+	@Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "Secondary phone number is invalid")
 	@Column(name = "phone_number_2")
 	private String phoneNumber2;
 
+	@NotNull(message = "Date of birth is mandatory")
+	@Past(message = "Date of birth must be a past date")
 	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
 
+	@Size(max = 255, message = "Avatar URL length must be less than 255 characters")
 	@Column(name = "avatar")
 	private String avatar;
 
 	@Column(name = "address")
+	@NotBlank(message = "Address is mandatory")
+	@Size(min = 3, max = 255, message = "Address must be between 10 and 255 characters")
 	private String address;
 
 	/**
@@ -70,7 +93,7 @@ public class EmployeeDetails extends BaseEntity {
 	 * @param avatar
 	 * @param address
 	 */
-	public EmployeeDetails(String firstName, String lastName, String emailAddress, String gender, byte isMarried,
+	public EmployeeDetails(String firstName, String lastName, String emailAddress, String gender, boolean isMarried,
 			String phoneNumner1, String phoneNumner2, Date dateOfBirth, String avatar, String address) {
 		super();
 		this.firstName = firstName;
@@ -167,14 +190,14 @@ public class EmployeeDetails extends BaseEntity {
 	/**
 	 * @return
 	 */
-	public byte getIsMarried() {
+	public boolean getIsMarried() {
 		return this.isMarried;
 	}
 
 	/**
 	 * @param isMarried
 	 */
-	public void setIsMarried(byte isMarried) {
+	public void setIsMarried(boolean isMarried) {
 		this.isMarried = isMarried;
 	}
 

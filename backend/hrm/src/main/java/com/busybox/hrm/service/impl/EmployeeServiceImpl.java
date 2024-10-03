@@ -3,6 +3,7 @@ package com.busybox.hrm.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.busybox.hrm.dao.EmployeeDAO;
@@ -13,6 +14,9 @@ import com.busybox.hrm.service.EmployeeService;
 
 import jakarta.transaction.Transactional;
 
+/**
+ * 
+ */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -22,6 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	/**
 	 * @param employeeDAO
 	 */
+	@Autowired
 	public EmployeeServiceImpl(EmployeeDAO employeeDAO, EmployeeDetailsDAO employeeDetailsDAO) {
 		this.employeeDAO = employeeDAO;
 		this.employeeDetailsDAO = employeeDetailsDAO;
@@ -57,6 +62,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeDetails saveEmployeeDetails(EmployeeDetails employeeDetails) {
 		return employeeDetailsDAO.saveEmployeeDetails(employeeDetails);
+	}
+
+	@Override
+	@Transactional
+	public Employee updateEmployee(Employee employee) {
+		return employeeDAO.saveEmployee(employee);
 	}
 
 }

@@ -42,4 +42,11 @@ public interface EmployeeService {
 	 * @return
 	 */
 	String generateEmployeeId();
+
+	/**
+	 * 
+	 * @param employee
+	 * @return
+	 */
+	Employee updateEmployee(Employee employee);
 }

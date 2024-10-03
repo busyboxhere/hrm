@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.busybox.hrm.entity.Employee;
 import com.busybox.hrm.entity.EmployeeDetails;
 import com.busybox.hrm.service.EmployeeService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
@@ -25,6 +30,7 @@ public class EmployeeRestController {
 	 * 
 	 * @param employeeService
 	 */
+	@Autowired
 	public EmployeeRestController(EmployeeService employeeService) {
 		this.employeeService = employeeService;
 	}
@@ -44,7 +50,7 @@ public class EmployeeRestController {
 	 * @return
 	 */
 	@PostMapping("/employee")
-	public Employee saveEmployee(@RequestBody EmployeeDetails employeeDetails) {
+	public Employee saveEmployee(@Valid @RequestBody EmployeeDetails employeeDetails) {
 		logger.info("save employee payload {}", employeeDetails);
 
 		EmployeeDetails empDetails = new EmployeeDetails();
@@ -61,8 +67,6 @@ public class EmployeeRestController {
 		empDetails.setPhoneNumber1(employeeDetails.getPhoneNumber1());
 		empDetails.setPhoneNumber2(employeeDetails.getPhoneNumber2());
 
-//		EmployeeDetails savedEmployeeDetails = employeeService.saveEmployeeDetails(empDetails);
-
 		Employee employee = new Employee();
 
 		employee.setEmployeeId(employeeService.generateEmployeeId());
@@ -70,4 +74,22 @@ public class EmployeeRestController {
 		return employeeService.saveEmployee(employee);
 	}
 
+	/**
+	 * @param employeeId
+	 * @return
+	 */
+	@GetMapping("/employee/{employeeId}")
+	public Employee findEmployeeById(@PathVariable String employeeId) {
+		logger.info("Finding employee with id " + employeeId);
+		return employeeService.findEmployeeById(employeeId);
+	}
+
+	/**
+	 * @param employeeId
+	 * @return
+	 */
+	@PutMapping("/employee")
+	public Employee findEmployeeById(@Valid @RequestBody Employee employee) {
+		return employeeService.updateEmployee(employee);
+	}
 }
