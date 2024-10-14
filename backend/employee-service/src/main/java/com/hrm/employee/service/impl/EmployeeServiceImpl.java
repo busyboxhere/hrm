@@ -1,4 +1,4 @@
-package com.busybox.hrm.service.impl;
+package com.hrm.employee.service.impl;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,11 +6,11 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.busybox.hrm.dao.EmployeeDAO;
-import com.busybox.hrm.dao.EmployeeDetailsDAO;
-import com.busybox.hrm.entity.Employee;
-import com.busybox.hrm.entity.EmployeeDetails;
-import com.busybox.hrm.service.EmployeeService;
+import com.hrm.employee.dao.EmployeeDAO;
+import com.hrm.employee.dao.EmployeeDetailsDAO;
+import com.hrm.employee.entity.Employee;
+import com.hrm.employee.entity.EmployeeDetails;
+import com.hrm.employee.service.EmployeeService;
 
 import jakarta.transaction.Transactional;
 
