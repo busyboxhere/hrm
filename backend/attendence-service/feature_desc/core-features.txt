@@ -1,0 +1,5 @@
+Employee Check in
+Employee Check out
+Employee break start
+Employee break end
+Automatic eval of overtime hours

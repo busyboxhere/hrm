@@ -79,10 +79,10 @@ public class EmployeeRestController {
 	 * @param employeeId
 	 * @return
 	 */
-	@GetMapping("/employee/{employeeId}")
-	public Employee findEmployeeById(@PathVariable String employeeId) {
-		logger.info("Finding employee with id " + employeeId);
-		return employeeService.findEmployeeById(employeeId);
+	@GetMapping("/employee/{id}")
+	public Employee findEmployeeById(@PathVariable int id) {
+		logger.info("Finding employee with id " + id);
+		return employeeService.findEmployeeById(id);
 	}
 
 	/**
@@ -97,8 +97,8 @@ public class EmployeeRestController {
 	/**
 	 * @param employeeId
 	 */
-	@DeleteMapping("/employee/{employeeId}")
-	public void deleteEmployeeById(@PathVariable String employeeId) {
-		employeeService.deleteEmployee(employeeId);
+	@DeleteMapping("/employee/{id}")
+	public void deleteEmployeeById(@PathVariable int id) {
+		employeeService.deleteEmployee(id);
 	}
 }

@@ -1,27 +1,36 @@
 package com.hrm.attendenceservice.exception;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
  * 
  */
 @ControllerAdvice
-public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomResponseEntityExceptionHandler {
+
 
 	@ExceptionHandler(RuntimeException.class)
-	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+	protected ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex, WebRequest request) {
 
-		return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		ErrorResponse errorResponse = new ErrorResponse();
+
+		errorResponse.setTimestamp(LocalDateTime.now());
+		errorResponse.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+		errorResponse.setError("Internal Server Error");
+		errorResponse.setMessage(ex.getMessage());
+		errorResponse.setDetails(request.getDescription(true));
+		errorResponse.setTraceId(UUID.randomUUID().toString());
+
+		return new ResponseEntity<ErrorResponse>(errorResponse,
+				HttpStatusCode.valueOf(HttpStatus.SC_INTERNAL_SERVER_ERROR));
 	}
 
 }

@@ -2,26 +2,20 @@ package com.hrm.attendenceservice.dto;
 
 import java.time.LocalDateTime;
 
-import com.hrm.attendenceservice.entity.EventType;
-
-public class AttendanceDetailsDTO {
+public class PunchDetailsDTO {
 
 	private String employeeId;
-	private EventType eventType;
 	private LocalDateTime eventTimeStamp;
 	private String remarks;
 
-	public AttendanceDetailsDTO() {
+	public PunchDetailsDTO() {
 		super();
 	}
 
-	public AttendanceDetailsDTO(String employeeId, EventType eventType, LocalDateTime eventTimeStamp, String remarks) {
+	public PunchDetailsDTO(String employeeId, LocalDateTime eventTimeStamp, String remarks) {
 		super();
 		this.employeeId = employeeId;
-
-		this.eventType = eventType;
 		this.eventTimeStamp = eventTimeStamp;
-
 		this.remarks = remarks;
 	}
 
@@ -31,14 +25,6 @@ public class AttendanceDetailsDTO {
 
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
-	}
-
-	public EventType getEventType() {
-		return this.eventType;
-	}
-
-	public void setEventType(EventType eventType) {
-		this.eventType = eventType;
 	}
 
 	public LocalDateTime getEventTimeStamp() {
@@ -59,8 +45,8 @@ public class AttendanceDetailsDTO {
 
 	@Override
 	public String toString() {
-		return "AttendanceDetailsDTO [employeeId=" + this.employeeId + ", eventType=" + this.eventType
-				+ ", eventTimeStamp=" + this.eventTimeStamp + ", remarks=" + this.remarks + "]";
+		return "AttendanceDetailsDTO [employeeId=" + this.employeeId + ", eventTimeStamp=" + this.eventTimeStamp
+				+ ", remarks=" + this.remarks + "]";
 	}
 
 }

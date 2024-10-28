@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hrm.employee.dao.EmployeeDAO;
 import com.hrm.employee.dao.EmployeeDetailsDAO;
 import com.hrm.employee.entity.Employee;
-import com.hrm.employee.entity.EmployeeDetails;
+import com.hrm.employee.exception.EmployeeNotFoundException;
 import com.hrm.employee.service.EmployeeService;
 
 import jakarta.transaction.Transactional;
@@ -35,23 +35,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public Employee saveEmployee(Employee employee) {
-		return employeeDAO.saveEmployee(employee);
+		return employeeDAO.save(employee);
 	}
 
 	@Override
 	@Transactional
-	public void deleteEmployee(String employeeId) {
-		employeeDAO.deleteEmployee(employeeId);
+	public void deleteEmployee(int id) {
+		employeeDAO.deleteById(id);
 	}
 
 	@Override
-	public Employee findEmployeeById(String employeeId) {
-		return employeeDAO.findEmployeeById(employeeId);
+	public Employee findEmployeeById(int id) throws EmployeeNotFoundException {
+
+		return employeeDAO.findById(id)
+				.orElseThrow(() -> new EmployeeNotFoundException("unable to find employee with id " + id));
 	}
 
 	@Override
 	public List<Employee> findAllEmployees() {
-		return employeeDAO.findAllEmployees();
+		return employeeDAO.findAll();
 	}
 
 	@Override
@@ -61,15 +63,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeDetails saveEmployeeDetails(EmployeeDetails employeeDetails) {
-
-		return employeeDetailsDAO.saveEmployeeDetails(employeeDetails);
-	}
-
-	@Override
 	@Transactional
 	public Employee updateEmployee(Employee employee) {
-		return employeeDAO.saveEmployee(employee);
+		return employeeDAO.save(employee);
 	}
 
 }

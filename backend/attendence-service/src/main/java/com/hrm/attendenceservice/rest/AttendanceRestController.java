@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hrm.attendenceservice.dto.AttendanceDetailsDTO;
+import com.hrm.attendenceservice.dto.PunchDetailsDTO;
 import com.hrm.attendenceservice.entity.Attendence;
 import com.hrm.attendenceservice.service.AttendanceService;
 
@@ -31,8 +31,8 @@ public class AttendanceRestController {
 	}
 
 	@PostMapping("/attendances")
-	public Attendence save(@RequestBody AttendanceDetailsDTO attendanceDetailsDTO) {
-		return attendanceService.save(attendanceDetailsDTO);
+	public Attendence save(@RequestBody PunchDetailsDTO attendanceDetailsDTO) {
+		return attendanceService.registerPunch(attendanceDetailsDTO);
 	}
 
 }

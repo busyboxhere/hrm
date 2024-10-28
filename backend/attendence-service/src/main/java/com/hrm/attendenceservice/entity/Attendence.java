@@ -17,13 +17,13 @@ public class Attendence extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "attendance_id")
-	private int attendanceId;
+	private Integer attendanceId;
 
 	@Column(name = "employee_id")
 	private String employeeId;
 
 	@Column(name = "total_work_hours")
-	private float totalWorkHours;
+	private Float totalWorkHours;
 
 //	@OneToOne(cascade = CascadeType.PERSIST)
 //	@JoinColumn(name = "shift_id")
@@ -37,7 +37,7 @@ public class Attendence extends BaseEntity {
 		super();
 	}
 
-	public Attendence(String employeeId, float totalWorkHours,
+	public Attendence(String employeeId, Float totalWorkHours,
 			/* Shifts shiftId, */ AttendanceDetails attendanceDetailsId) {
 		super();
 		this.employeeId = employeeId;
@@ -46,11 +46,11 @@ public class Attendence extends BaseEntity {
 		this.attendanceDetailsId = attendanceDetailsId;
 	}
 
-	public int getAttendanceId() {
+	public Integer getAttendanceId() {
 		return this.attendanceId;
 	}
 
-	public void setAttendanceId(int attendanceId) {
+	public void setAttendanceId(Integer attendanceId) {
 		this.attendanceId = attendanceId;
 	}
 
@@ -62,11 +62,11 @@ public class Attendence extends BaseEntity {
 		this.employeeId = employeeId;
 	}
 
-	public float getTotalWorkHours() {
+	public Float getTotalWorkHours() {
 		return this.totalWorkHours;
 	}
 
-	public void setTotalWorkHours(float totalWorkHours) {
+	public void setTotalWorkHours(Float totalWorkHours) {
 		this.totalWorkHours = totalWorkHours;
 	}
 

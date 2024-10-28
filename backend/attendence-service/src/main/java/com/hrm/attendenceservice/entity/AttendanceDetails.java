@@ -19,7 +19,7 @@ public class AttendanceDetails extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 
 	@NotNull(message = "Event type cannot be blank")
 	@Enumerated(EnumType.STRING)
@@ -32,7 +32,7 @@ public class AttendanceDetails extends BaseEntity {
 
 	@Min(value = 0, message = "Overtime hours cannot be negative")
 	@Column(name = "overtime_hours")
-	private int overTimeHours;
+	private Integer overTimeHours;
 
 	@Size(max = 200, message = "Remarks should not exceed 200 characters")
 	@Column(name = "remarks")
@@ -42,7 +42,7 @@ public class AttendanceDetails extends BaseEntity {
 		super();
 	}
 
-	public AttendanceDetails(EventType eventType, LocalDateTime eventTimeStamp, int overTimeHours, String remarks) {
+	public AttendanceDetails(EventType eventType, LocalDateTime eventTimeStamp, Integer overTimeHours, String remarks) {
 		super();
 		this.eventType = eventType;
 		this.eventTimeStamp = eventTimeStamp;
@@ -50,11 +50,11 @@ public class AttendanceDetails extends BaseEntity {
 		this.remarks = remarks;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -74,11 +74,11 @@ public class AttendanceDetails extends BaseEntity {
 		this.eventTimeStamp = eventTimeStamp;
 	}
 
-	public int getOverTimeHours() {
+	public Integer getOverTimeHours() {
 		return this.overTimeHours;
 	}
 
-	public void setOverTimeHours(int overTimeHours) {
+	public void setOverTimeHours(Integer overTimeHours) {
 		this.overTimeHours = overTimeHours;
 	}
 

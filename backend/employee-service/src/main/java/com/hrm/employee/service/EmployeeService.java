@@ -3,7 +3,7 @@ package com.hrm.employee.service;
 import java.util.List;
 
 import com.hrm.employee.entity.Employee;
-import com.hrm.employee.entity.EmployeeDetails;
+import com.hrm.employee.exception.EmployeeNotFoundException;
 
 public interface EmployeeService {
 	/**
@@ -13,23 +13,18 @@ public interface EmployeeService {
 
 	/**
 	 * 
-	 * @param employeeDetails
-	 * @return
+	 * @param id
 	 */
-	EmployeeDetails saveEmployeeDetails(EmployeeDetails employeeDetails);
+	void deleteEmployee(int id);
 
 	/**
 	 * 
-	 * @param employeeId
-	 */
-	void deleteEmployee(String employeeId);
-
-	/**
-	 * 
+	 * @param id
 	 * @param employeeId
 	 * @return
+	 * @throws EmployeeNotFoundException
 	 */
-	Employee findEmployeeById(String employeeId);
+	Employee findEmployeeById(int id) throws EmployeeNotFoundException;
 
 	/**
 	 * 
